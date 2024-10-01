@@ -6,6 +6,7 @@ type Book struct {
 	Title  string
 	Author string
 	Pages  int
+	Id     uint32
 }
 
 func (b Book) String() string {

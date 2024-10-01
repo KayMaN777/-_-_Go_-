@@ -1,6 +1,7 @@
 package main
 
 import (
+	"hash/adler32"
 	"hash/fnv"
 )
 
@@ -14,4 +15,10 @@ func (fnvHash *FnvGenerator) genID(title string) uint32 {
 	generator := fnv.New32a()
 	generator.Write([]byte(title))
 	return generator.Sum32()
+}
+
+type AdlerGenerator struct{}
+
+func (addlerHash *AdlerGenerator) genID(title string) uint32 {
+	return adler32.Checksum([]byte(title))
 }
