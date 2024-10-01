@@ -1,4 +1,4 @@
-package main
+package mylib
 
 type SliceStore struct {
 	books []Book

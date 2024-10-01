@@ -1,4 +1,4 @@
-package main
+package mylib
 
 type MapStore struct {
 	bookMap map[uint32]Book

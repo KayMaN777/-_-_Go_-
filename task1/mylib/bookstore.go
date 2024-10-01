@@ -1,4 +1,4 @@
-package main
+package mylib
 
 type BookStore interface {
 	Search(id uint32) (Book, bool)
