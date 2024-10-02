@@ -2,11 +2,14 @@ package main
 
 import (
 	"fmt"
-	"task1/mylib"
+	"task1/internal/bookstore"
+	"task1/internal/idgenerator"
+	"task1/internal/model"
+	"task1/internal/store"
 )
 
 func main() {
-	books := []mylib.Book{
+	books := []model.Book{
 		{Title: "Война и мир", Author: "Лев Толстой", Pages: 1225},
 		{Title: "Преступление и наказание", Author: "Фёдор Достоевский", Pages: 550},
 		{Title: "Анна Каренина", Author: "Лев Толстой", Pages: 864},
@@ -24,7 +27,7 @@ func main() {
 		{Title: "Золото пылающих скал", Author: "Джон Стейнбек", Pages: 320},
 	}
 	// Создаем библиотеку
-	library := mylib.NewLibrary(mylib.NewMapStore(), new(mylib.FnvGenerator))
+	library := bookstore.NewLibrary(store.NewMapStore(), idgenerator.NewFnvGenerator())
 	library.AddBook(books[0])
 	library.AddBook(books[1])
 	library.AddBook(books[2])
@@ -63,7 +66,7 @@ func main() {
 	}
 
 	// Меняем генератор id
-	library.SetGenerator(new(mylib.AdlerGenerator))
+	library.SetGenerator(idgenerator.NewAdlerGenerator())
 
 	// Проверяем, что книги которые были добавлены находятся
 	book, ok = library.FindBook(books[1].Title)
@@ -88,7 +91,7 @@ func main() {
 	}
 
 	// Меняем хранилище
-	library.SetStore(mylib.NewSliceStore())
+	library.SetStore(store.NewSliceStore())
 	library.AddBook(books[7])
 	library.AddBook(books[8])
 	library.AddBook(books[9])
